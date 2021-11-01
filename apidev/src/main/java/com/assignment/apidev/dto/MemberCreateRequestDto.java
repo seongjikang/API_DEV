@@ -1,7 +1,5 @@
 package com.assignment.apidev.dto;
 
-import com.assignment.apidev.entity.GenderType;
-import com.assignment.apidev.entity.Member;
 import lombok.Data;
 
 @Data

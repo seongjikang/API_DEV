@@ -1,15 +1,16 @@
 package com.assignment.apidev.service;
 
-import com.assignment.apidev.dto.MemberCreateRequestDto;
-import com.assignment.apidev.entity.GenderType;
+import com.assignment.apidev.dto.*;
 import com.assignment.apidev.entity.Member;
+import com.assignment.apidev.entity.Order;
 import com.assignment.apidev.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
@@ -25,9 +26,22 @@ public class MemberService {
         member.setEmail(requestDto.getEmail());
         member.setPhoneNumber(requestDto.getPhoneNumber());
         member.setPassword(requestDto.getPassword());
-        if(requestDto.getGenderType().equals("M")) member.setGenderType(GenderType.MALE);
-        else member.setGenderType(GenderType.FEMALE);
+        member.setGenderType(requestDto.getGenderType());
         memberRepository.save(member);
         return member.getId();
+    }
+
+    public MemberDto findOne(Long memberId) {
+        Member findMember = memberRepository.findMemberById(memberId);
+        return new MemberDto(findMember.getName(),findMember.getNickname(), findMember.getPhoneNumber(), findMember.getEmail(), findMember.getGenderType());
+    }
+
+    public Page<MemberDetailDto> findAll(MemberSearchConditionDto memberSearchCondition, Pageable pageable) {
+        return memberRepository.searchMemberList(memberSearchCondition, pageable);
+    }
+
+    public List<Order> findOrders(Long memberId) {
+        Member findMember = memberRepository.findMemberById(memberId);
+        return memberRepository.findMemberOrdersByMember(findMember);
     }
 }
