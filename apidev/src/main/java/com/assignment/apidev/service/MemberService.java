@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional(readOnly = true)
@@ -40,8 +41,12 @@ public class MemberService {
         return memberRepository.searchMemberList(memberSearchCondition, pageable);
     }
 
-    public List<Order> findOrders(Long memberId) {
+    public List<OrderDto> findOrders(Long memberId) {
         Member findMember = memberRepository.findMemberById(memberId);
-        return memberRepository.findMemberOrdersByMember(findMember);
+        List<Order> orders= memberRepository.findMemberOrdersByMember(findMember);
+        List<OrderDto> result = orders.stream()
+                .map(o -> new OrderDto(o))
+                .collect(Collectors.toList());
+        return result;
     }
 }
