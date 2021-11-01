@@ -4,9 +4,11 @@ import com.assignment.apidev.entity.Member;
 import com.assignment.apidev.entity.Order;
 import lombok.RequiredArgsConstructor;
 import org.apache.catalina.User;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.validation.ConstraintViolationException;
 import java.util.List;
 
 @Repository
@@ -15,7 +17,7 @@ public class MemberRepository {
     private final EntityManager em;
 
     public void save(Member member) {
-         em.persist(member);
+        em.persist(member);
     }
 
     public User findUserById(Long id) {

@@ -33,7 +33,7 @@ public class InitDBData {
                 Member member = new Member();
                 member.setName("testName"+i);
                 member.setNickname("testNickName"+i);
-                member.setPassword("testPw");
+                member.setPassword("testPw1234");
                 member.setPhoneNumber("010000000"+i);
                 member.setEmail("test"+i+"@gmail.com");
                 member.setGenderType(GenderType.MALE);
@@ -44,7 +44,7 @@ public class InitDBData {
                 Member member = new Member();
                 member.setName("testName"+i);
                 member.setNickname("testNickName"+i);
-                member.setPassword("testPw");
+                member.setPassword("testPw1234");
                 member.setPhoneNumber("010000000"+i);
                 member.setEmail("test"+i+"@gmail.com");
                 member.setGenderType(GenderType.FEMALE);
