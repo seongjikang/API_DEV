@@ -27,8 +27,8 @@ public class Member {
     private String phoneNumber;
     @NotNull @Column(unique = true, length = 100)
     private String email;
-    @Enumerated(EnumType.STRING)
-    private GenderType genderType;
+
+    private String genderType;
 
     @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>();

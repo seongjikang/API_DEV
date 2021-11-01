@@ -1,6 +1,5 @@
 package com.assignment.apidev;
 
-import com.assignment.apidev.entity.GenderType;
 import com.assignment.apidev.entity.Member;
 import com.assignment.apidev.entity.Order;
 import lombok.RequiredArgsConstructor;
@@ -36,7 +35,7 @@ public class InitDBData {
                 member.setPassword("testPw1234");
                 member.setPhoneNumber("010000000"+i);
                 member.setEmail("test"+i+"@gmail.com");
-                member.setGenderType(GenderType.MALE);
+                member.setGenderType("M");
                 em.persist(member);
             }
 
@@ -47,7 +46,7 @@ public class InitDBData {
                 member.setPassword("testPw1234");
                 member.setPhoneNumber("010000000"+i);
                 member.setEmail("test"+i+"@gmail.com");
-                member.setGenderType(GenderType.FEMALE);
+                member.setGenderType("F");
                 em.persist(member);
             }
         }
