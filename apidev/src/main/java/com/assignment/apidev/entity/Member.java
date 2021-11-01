@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class Member {
     private String name;
     @NotNull @Column(length = 30)
     private String nickname;
-    @NotNull
+    @NotNull @Size(min = 10)
     private String password;
     @NotNull @Column(unique = true, length = 20)
     private String phoneNumber;
@@ -31,4 +32,5 @@ public class Member {
 
     @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>();
+
 }
